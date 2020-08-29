@@ -45,6 +45,19 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+       // dd($request->all());
+       $file=$request->file('file');
+       $name=$file->getClientOriginalName();
+       $file->move(public_path().'/image/',$name);
+       $post=new Post();
+       $post->title=$request->title;
+       $post->body=$request->body;
+       $post->user_id=1;
+       //$post->user_id = Auth()->user()->id;
+       $post->cathegory_id=1;
+       $post->file=$name;
+       $post->save();
+       return view('index',['post',$post])->with('success','Article a été ajouté avec su');
     }
 
     /**
