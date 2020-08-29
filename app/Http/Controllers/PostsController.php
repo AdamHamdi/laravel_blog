@@ -15,6 +15,9 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $post=Post::all();
+        return view('post.posts',['posts'=>$post]);
+
         // $faker = Faker\Factory::create();
         // $post= new Post();
         // for ($i = 0; $i < 100; $i++) {
