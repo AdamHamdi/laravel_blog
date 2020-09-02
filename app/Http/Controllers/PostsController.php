@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $post=Post::all();
+        $post=Post::orderBy('created_at','DESC')->get();
         return view('post.posts',['posts'=>$post]);
 
         // $faker = Faker\Factory::create();

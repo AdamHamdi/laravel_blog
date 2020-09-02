@@ -9,8 +9,8 @@
             <div class="card-body">
 
                <h3 class="card-title">{{ $p->title }}</h3>
-               <img src="{{ URL::to('image/'.$p->file) }}" alt="" class="card-img img-fluid" style="width:100px;height:100px">
-               <div class="card-text">{{ $p->body }}.</div>
+               <img src="{{ URL::to('image/'.$p->file) }}" alt="" class="card-img  mb-3 rounded img-fluid" style="width:100px;height:100px">
+               <div class="card-text">{{ str_limit($p->body ,100)}}.</div>
                <a href="" class="btn btn-link">Voir</a>
             </div>
         </div>

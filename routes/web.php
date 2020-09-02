@@ -13,7 +13,7 @@ use App\Post;
 |
 */
 
-Route::get('/', function () {
+Route::get('/posts', function () {
 
     return view('index');
 });
