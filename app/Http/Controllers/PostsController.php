@@ -15,8 +15,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $post=Post::orderBy('created_at','DESC')->get();
-        return view('post.posts',['posts'=>$post]);
+        $post=Post::orderBy('created_at','DESC')->paginate(3);
+        $lastAddedPosts=Post::orderBy('created_at','DESC')->take(3)->get();
+        return view('post.posts',['post'=>$post,'lastAddedPosts'=>$lastAddedPosts]);
+
 
         // $faker = Faker\Factory::create();
         // $post= new Post();
@@ -60,7 +62,7 @@ class PostsController extends Controller
        $post->cathegory_id=1;
        $post->file=$name;
        $post->save();
-       return view('index',['post',$post])->with('success','Article a été ajouté avec su');
+       return redirect('/posts')->with('success','Article a été ajouté avec succes');
     }
 
     /**
@@ -74,7 +76,9 @@ class PostsController extends Controller
         //
     $post=Post::findOrFail($id);
     //dd($post);
-    return view('post.show',compact('post'));
+    $lastAddedPosts=Post::orderBy('created_at','DESC')->take(3)->get();
+
+    return view('post.show',compact('post','lastAddedPosts'));
     }
 
     /**
