@@ -17,11 +17,15 @@
             Compte
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('user.add') }}">Inscription</a>
-            <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('users.login') }}">Deconnexion</a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth()
+              <a class="dropdown-item" href="{{ route('users.login') }}">Deconnexion</a>
+
+              @else
+                    <a class="dropdown-item" href="{{ route('user.add') }}">Inscription</a>
+                    <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a>
+                   
+              @endauth
           </div>
         </li>
         <li class="nav-item dropdown">

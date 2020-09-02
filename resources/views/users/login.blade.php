@@ -6,17 +6,17 @@
         <div class="card">
             <div class="card-header bg-success" style="text-align: center"><h3>Connexion</h3></div>
             <div class="card-body">
-                <form action="{{ url('users.auth') }}" method="post" >
+                <form action="{{ route('users.auth') }}" method="post" >
                     {{ csrf_field() }}
 
                     <div class="form-group" >
                       <label  for="email">Email *</label>
-                      <input type="email" class="form-control"  id="email" name="email" placeholder="Email">
+                      <input type="email" class="form-control" required id="email" name="email" placeholder="Email">
 
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de Passe *</label>
-                        <input type="password" class="form-control" id="password" name="password"  placeholder="Mot de passe">
+                        <input type="password" class="form-control"required id="password" name="password"  placeholder="Mot de passe">
                       </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

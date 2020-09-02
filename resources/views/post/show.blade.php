@@ -15,6 +15,23 @@
 
             </div>
         </div>
+        <div class="card">
+            <h4 class="ml-4">Commentaires  </h4>
+            <div class="card-body">
+                <form action="{{ route('users.auth') }}" method="post" >
+                    {{ csrf_field() }}
+
+                    <div class="form-group" >
+
+                      <textarea type="text" class="form-control" required  name="comment" placeholder=""></textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Commenter</button>
+                  </form>
+
+            </div>
+        </div>
 
     </div>
     <div class="col-md-4">
