@@ -16,19 +16,23 @@
             </div>
         </div>
         <div class="card">
-            <h4 class="ml-4">Commentaires  </h4>
+            <h4 class="ml-4 mt-4">  <span class="badge badge-secondary">0</span> Commentaires  </h4>
             <div class="card-body">
-                <form action="{{ route('users.auth') }}" method="post" >
-                    {{ csrf_field() }}
+                @auth
+                    <form action="{{ route('users.auth') }}" method="post" >
+                            {{ csrf_field() }}
 
-                    <div class="form-group" >
+                            <div class="form-group" >
 
-                      <textarea type="text" class="form-control" required  name="comment" placeholder=""></textarea>
+                            <textarea type="text" class="form-control" required  name="comment" placeholder=""></textarea>
 
-                    </div>
+                            </div>
 
-                    <button type="submit" class="btn btn-success">Commenter</button>
-                  </form>
+                            <button type="submit" class="btn btn-success">Commenter</button>
+                    </form>
+                @else
+                <a href="{{ route('users.login') }}" class="btn btn-link">Connectez vous pour commenter</a>
+                @endauth
 
             </div>
         </div>

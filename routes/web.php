@@ -43,7 +43,7 @@ Route::post('/users/auth',[
     'as'=>'users.auth'
 ]);
 // users logoutroute
-Route::post('/users/logout',[
+Route::get('/users/logout',[
     'uses'=>'UsersController@logout',
     'as'=>'users.logout'
 ]);
