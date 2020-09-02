@@ -18,10 +18,10 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Inscription</a>
-            <a class="dropdown-item" href="#">Connexion</a>
+            <a class="dropdown-item" href="{{ route('user.add') }}">Inscription</a>
+            <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Deconnexion</a>
+            <a class="dropdown-item" href="{{ route('users.login') }}">Deconnexion</a>
           </div>
         </li>
         <li class="nav-item dropdown">

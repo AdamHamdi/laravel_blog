@@ -4,7 +4,7 @@
 <div class="row mt-5">
     <div class="col-md-8 mx-auto">
         <div class="card">
-            <div class="card-header bg-success" style="text-align: center"><h3>onnexionC</h3></div>
+            <div class="card-header bg-success" style="text-align: center"><h3>Connexion</h3></div>
             <div class="card-body">
                 <form action="{{ url('users.auth') }}" method="post" >
                     {{ csrf_field() }}

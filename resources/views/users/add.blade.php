@@ -6,21 +6,21 @@
         <div class="card">
             <div class="card-header bg-success" style="text-align: center"><h3>Inscription</h3></div>
             <div class="card-body">
-                <form action="{{ url('users.store') }}" method="post" >
+                <form action="{{ route('users.store') }}" method="post" >
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="name">Nom & Prénom *</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Nom & Prénom" >
+                      <input type="text" class="form-control" required id="name" name="name" placeholder="Nom & Prénom" >
                     </div>
 
                     <div class="form-group" >
                       <label  for="email">Email *</label>
-                      <input type="email" class="form-control"  id="email" name="email" placeholder="Email">
+                      <input type="email" class="form-control" required id="email" name="email" placeholder="Email">
 
                     </div>
                     <div class="form-group">
                         <label for="password">Mot de Passe *</label>
-                        <input type="password" class="form-control" id="password" name="password"  placeholder="Mot de passe">
+                        <input type="password" class="form-control" required id="password" name="password"  placeholder="Mot de passe">
                       </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
