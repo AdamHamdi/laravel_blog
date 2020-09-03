@@ -63,3 +63,7 @@ Route::delete('offres/{id}',[
     'as'=>'posts.delete'
 ] );
 
+Route::post('offres/search',[
+    'uses'=>'PostsController@search',
+    'as'=>'post.search'
+] );

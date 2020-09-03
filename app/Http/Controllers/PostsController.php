@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
-use App\Http\Controllers\Faker\Factory;
+use Illuminate\Support\Facades\DB;
 class PostsController extends Controller
 {
     /**
@@ -138,5 +138,13 @@ class PostsController extends Controller
         //
         $post=Post::findOrFail($id)->delete();
         return redirect('posts')->with('danger',"L'article a été supprimé avec succes");
+    }
+    public function search(Request $request){
+        $posts= DB::table('posts')->where('title','like','%'.$request->search.'%')
+                                  ->where('body','like','%'.$request->search.'%')
+                                  ->paginate(3);
+        $lastAddedPosts=Post::orderBy('created_at','DESC')->take(3)->get();
+
+        return view('post.search',compact('posts','lastAddedPosts'));
     }
 }
