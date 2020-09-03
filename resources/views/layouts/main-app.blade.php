@@ -30,7 +30,15 @@
         <div class="alert alert-success">
             {{ Session::get('success') }} @php Session::forget('success'); @endphp
         </div>
-        @endif @yield('content')
+        @endif
+        {{--  @if(count($errors->all())>0)
+        @foreach($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }} @php Session::forget('danger'); @endphp
+        </div>
+        @endforeach
+        @endif  --}}
+        @yield('content')
 
     </div>
     <footer class="mt-3">

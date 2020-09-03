@@ -13,12 +13,21 @@
                     <div class="form-group">
                       <label for="title">Title *</label>
                       <input type="text" class="form-control" id="title" value ="{{ $post->title }}" name="title" >
+                      @if($errors->get('title'))
+                      @foreach($errors->get('title') as
+                      $message)
+                      <label style="color:red">{{ $message }}</label>
+                      @endforeach @endif
                     </div>
 
                     <div class="form-group" >
                       <label  for="body">Body *</label>
                       <textarea type="text" class="form-control" rows="5" id="body" value ="" name="body">{{ $post->body }}</textarea>
-
+                      @if($errors->get('body'))
+                      @foreach($errors->get('body') as
+                      $message)
+                      <label style="color:red">{{ $message }}</label>
+                      @endforeach @endif
                     </div>
                     <div class="form-group" >
                         <img src="{{  URL::to('image/'.$post->file)}}" alt="" height="200" width="200" class="img-fluid rounded">
@@ -26,6 +35,11 @@
                     <div class="form-group">
                         <label for="file">Image *</label>
                         <input type="file" class="form-control" id="file" name="file">
+                        @if($errors->get('file'))
+                        @foreach($errors->get('file') as
+                        $message)
+                        <label style="color:red">{{ $message }}</label>
+                        @endforeach @endif
                       </div>
                     <button type="submit" class="btn btn-success btn-sm"><i class="far fa-paper-plane"></i>  valider</button>
                   </form>
