@@ -48,3 +48,14 @@ Route::get('/users/logout',[
     'as'=>'users.logout'
 ]);
 
+//add comment route
+Route::post('/comment/add',[
+    'uses'=>'CommentsController@store',
+    'as'=>'comment.store'
+]);
+// //show comment route
+// Route::post('/comments',[
+//     'uses'=>'CommentsController@index',
+//     'as'=>'comment.show'
+// ]);
+

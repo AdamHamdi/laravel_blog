@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -13,7 +14,11 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+
+        //     $comment=Comment::orderBy('created_at','DESC')->get();
+        //   //  $lastAddedPosts=Comment::orderBy('created_at','DESC')->take(3)->get();
+        //     return view('post.show',['comment'=>$comment]);
+
     }
 
     /**
@@ -35,6 +40,12 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //
+        $comment=new Comment();
+        $comment->body=$request->body;
+        $comment->post_id=$request->post_id;
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+        return redirect()->back()->with('success','Votre commentaire a été ajouté avec succes');
     }
 
     /**

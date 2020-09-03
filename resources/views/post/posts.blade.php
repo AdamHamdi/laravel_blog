@@ -15,7 +15,7 @@
             </div>
         </div>
         @endforeach
-       <div class="mx-auto">
+       <div class="mx-auto mt-2">
 
             {{ $post->links() }}
 

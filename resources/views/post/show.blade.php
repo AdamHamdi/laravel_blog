@@ -16,26 +16,38 @@
             </div>
         </div>
         <div class="card">
-            <h4 class="ml-4 mt-4">  <span class="badge badge-secondary">0</span> Commentaires  </h4>
+            <h4 class="ml-4 mt-4">  <span class="badge badge-light">{{ $post->comments->count() }}</span> Commentaires  </h4>
             <div class="card-body">
+                @foreach ($post->comments as $c )
+                <div class="media">
+
+                            <div class="media-body">
+                                <h6> {{ App\User::findOrFail($c->user_id)->name}}  <small>  {{ $c->created_at }} </small></h6>
+                                <p>{{ $c->body }}.</p><hr>
+
+                            </div>
+                </div>
+            @endforeach
                 @auth
-                    <form action="{{ route('users.auth') }}" method="post" >
+                    <form action="{{ route('comment.store') }}" method="post" >
                             {{ csrf_field() }}
 
                             <div class="form-group" >
-
-                            <textarea type="text" class="form-control" required  name="comment" placeholder=""></textarea>
-
+                                <input type="hidden" class="form-control" required  name="post_id" value="{{ $post->id }}" >
+                                </div>
+                            <div class="form-group" >
+                            <textarea type="text" class="form-control" required  name="body" placeholder="commentaire"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Commenter</button>
+                            <button type="submit" class="btn btn-success btn-sm">Commenter</button>
                     </form>
                 @else
-                <a href="{{ route('users.login') }}" class="btn btn-link">Connectez vous pour commenter</a>
+                <a href="{{ route('users.login') }}" class="btn btn-link">Connectez vous pour commenter </a>
                 @endauth
 
             </div>
         </div>
+
 
     </div>
     <div class="col-md-4">
