@@ -18,6 +18,7 @@ class PostsController extends Controller
         $post=Post::orderBy('created_at','DESC')->paginate(3);
         $lastAddedPosts=Post::orderBy('created_at','DESC')->take(3)->get();
         return view('post.posts',['post'=>$post,'lastAddedPosts'=>$lastAddedPosts]);
+        
 
 
         // $faker = Faker\Factory::create();

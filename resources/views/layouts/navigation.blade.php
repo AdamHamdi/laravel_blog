@@ -27,16 +27,19 @@
                     <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a> @endauth
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Gestion des article
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ url('/posts/create') }}">Ajouter</a>
+            @auth
+               @if(Auth::user()->is_admin)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gestion des article
+                        </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/posts/create') }}">Ajouter</a>
 
-                </div>
-            </li>
-
+                            </div>
+                        </li>
+               @endif
+            @endauth
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
