@@ -8,25 +8,32 @@
         <div class="card">
             <div class="card-body">
 
-               <h3 class="card-title">{{ $post->title }}</h3>
+               <h3 class="card-title text-info">{{ $post->title }}</h3>
+               <h6 class="text-secondary">{{ $post->user->name }}</h6>
                <p><span class="text-muted">{{ $post->created_at }}</span></p>
                <img src="{{ URL::to('image/'.$post->file) }}" alt="" class="card-img  mb-3 rounded img-fluid" style="width:600px;height:300px">
                <div class="card-text">{{ $post->body }}.</div>
-
+               <hr>
+               <h6 class="ml-6  float-left">  <span class="badge badge-light">{{ $post->comments->count() }}</span>   </h4>
+               <button class="btn btn-sm float-right "><i class="far fa-thumbs-up"> j&#039aime</i></button>
             </div>
         </div>
         <div class="card">
-            <h4 class="ml-4 mt-4">  <span class="badge badge-light">{{ $post->comments->count() }}</span> Commentaires  </h4>
+            <h4 class="ml-4 mt-4">  <span class="badge badge-light">{{ $post->comments->count() }} </span> Commentaires  </h4>
             <div class="card-body">
                 @foreach ($post->comments as $c )
-                <div class="media">
+                <div class="media border border-bottom-1">
 
-                            <div class="media-body">
+                            <div class="media-body m-2">
                                 <h6> {{ App\User::findOrFail($c->user_id)->name}}  <small>  {{ $c->created_at }} </small></h6>
-                                <p>{{ $c->body }}.</p><hr>
+                                <p>{{ $c->body }}.</p>
 
                             </div>
+
                 </div>
+                <h6 class="ml-6  float-left">  <span class="badge badge-light">{{ $post->comments->count() }}  j&#039aime</span>   </h6>
+                    <button class="btn btn-sm float-right "><i class="far fa-thumbs-up"> j&#039aime</i></button>
+                    <hr class="mt-5">
             @endforeach
                 @auth
                     <form action="{{ route('comment.store') }}" method="post" >
@@ -44,7 +51,12 @@
                 @else
                 <a href="{{ route('users.login') }}" class="btn btn-link">Connectez vous pour commenter </a>
                 @endauth
-
+                @if(Auth::user()->is_admin)
+                    <div class="mx-auto float-right mb-3">
+                        <a href="{{ url('post.edit',['id'=>$post->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> </a>
+                        <a href="{{ url('post.destroy',['id'=>$post->id]) }}" class="btn btn-sm  btn-danger"><i class="fas fa-trash"></i></a>
+                    </div>
+                @endif
             </div>
         </div>
 

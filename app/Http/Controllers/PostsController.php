@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 # Load Fakers own autoloader
 //require_once '/path/to/Faker/src/autoload.php';
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Http\Controllers\Faker\Factory;
@@ -18,7 +18,7 @@ class PostsController extends Controller
         $post=Post::orderBy('created_at','DESC')->paginate(3);
         $lastAddedPosts=Post::orderBy('created_at','DESC')->take(3)->get();
         return view('post.posts',['post'=>$post,'lastAddedPosts'=>$lastAddedPosts]);
-        
+
 
 
         // $faker = Faker\Factory::create();
@@ -58,7 +58,7 @@ class PostsController extends Controller
        $post=new Post();
        $post->title=$request->title;
        $post->body=$request->body;
-       $post->user_id=1;
+       $post->user_id = auth()->user()->id;
        //$post->user_id = Auth()->user()->id;
        $post->cathegory_id=1;
        $post->file=$name;
