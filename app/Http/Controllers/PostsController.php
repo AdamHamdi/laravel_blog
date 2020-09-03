@@ -90,7 +90,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=Post::findOrFail($id);
+        return view('post.edit',compact('post'));
     }
 
     /**
@@ -102,7 +103,19 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file=$request->file('file');
+        $name=$file->getClientOriginalName();
+        $file->move(public_path().'/image/',$name);
+        $post=Post::find($id);
+        $post->title=$request->title;
+        $post->body=$request->body;
+        $post->user_id = auth()->user()->id;
+        //$post->user_id = Auth()->user()->id;
+        $post->cathegory_id=1;
+        $post->file=$name;
+        $post->save();
+        return redirect('/posts')->with('success','Article a été ajouté avec succes');
+
     }
 
     /**
