@@ -54,7 +54,7 @@
                 @if(Auth::user()->is_admin)
                     <div class="mx-auto float-right mb-3">
                         <a href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> </a>
-                        <a href="{{ url('posts.destroy',['id'=>$post->id]) }}" class="btn btn-sm  btn-danger"><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('posts.delete',['id'=>$post->id]) }}" class="btn btn-sm  btn-danger"><i class="fas fa-trash"></i></a>
                     </div>
                 @endif
             </div>

@@ -6,7 +6,9 @@
         <div class="card">
             <div class="card-header bg-warning" style="text-align: center"><h3>Modifier cet article</h3></div>
             <div class="card-body">
-                <form action="{{ url('posts.update',['id'=>$post->id]) }}" method="post" enctype="multipart/form-data">
+                <form action="{{url('posts/'.$post->id)}}" method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" name="_method" value="PUT" />
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="title">Title *</label>

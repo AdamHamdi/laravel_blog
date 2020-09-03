@@ -103,18 +103,21 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file=$request->file('file');
-        $name=$file->getClientOriginalName();
-        $file->move(public_path().'/image/',$name);
-        $post=Post::find($id);
+        $post=Post::findOrFail($id);
+        if($request->hasFile('file')){
+            $file=$request->file('file');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path().'/image/',$name);
+            $post->file=$name;
+        }
         $post->title=$request->title;
         $post->body=$request->body;
         $post->user_id = auth()->user()->id;
         //$post->user_id = Auth()->user()->id;
         $post->cathegory_id=1;
-        $post->file=$name;
+
         $post->save();
-        return redirect('/posts')->with('success','Article a été ajouté avec succes');
+        return redirect('posts')->with('warning','Article a été modifié avec succes');
 
     }
 
@@ -127,5 +130,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+        $post=Post::findOrFail($id)->delete();
+        return redirect('posts')->with('danger','Article a été supprimé avec succes');
     }
 }
