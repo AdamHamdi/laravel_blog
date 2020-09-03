@@ -58,7 +58,7 @@ Route::post('/comment/add',[
 //     'uses'=>'CommentsController@index',
 //     'as'=>'comment.show'
 // ]);
-Route::get('offres/{id}',[
+Route::delete('offres/{id}',[
     'uses'=>'PostsController@destroy',
     'as'=>'posts.delete'
 ] );

@@ -51,6 +51,12 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required |max:1000',
+            'file'=>'required'
+
+        ]);
        // dd($request->all());
        $file=$request->file('file');
        $name=$file->getClientOriginalName();
@@ -131,6 +137,6 @@ class PostsController extends Controller
     {
         //
         $post=Post::findOrFail($id)->delete();
-        return redirect('posts')->with('danger','Article a été supprimé avec succes');
+        return redirect('posts')->with('danger',"L'article a été supprimé avec succes");
     }
 }

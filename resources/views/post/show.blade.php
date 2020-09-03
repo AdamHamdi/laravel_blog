@@ -53,8 +53,12 @@
                 @endauth
                 @if(Auth::user()->is_admin)
                     <div class="mx-auto float-right mb-3">
-                        <a href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> </a>
-                        <a href="{{ route('posts.delete',['id'=>$post->id]) }}" class="btn btn-sm  btn-danger"><i class="fas fa-trash"></i></a>
+                        <form action="{{ route('posts.delete',['id'=>$post->id]) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cette offre ?')" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <a href="{{ url('posts/'.$post->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> </a>
+                            <button   class="btn btn-sm  btn-danger" ><i class="fas fa-trash"></i></button>
+                        </form>
                     </div>
                 @endif
             </div>
