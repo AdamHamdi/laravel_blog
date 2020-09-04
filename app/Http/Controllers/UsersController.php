@@ -15,7 +15,7 @@ class UsersController extends Controller
         $user->email=$request->email;
         $user->password=bcrypt($request->password);
         $user->save();
-        return redirect('posts')->with("success", "vous étes inscrit maintenant");
+        return redirect('/')->with("success", "vous étes inscrit maintenant");
 
     }
     public function create(){
@@ -26,7 +26,7 @@ class UsersController extends Controller
     }
     public function auth( Request $request){
         if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-           return redirect('/posts');
+           return redirect('/');
 
         } else{
             return redirect()->route('users.login')->with('fail','Email ou mot de passe est incorrect ');
@@ -34,6 +34,6 @@ class UsersController extends Controller
     }
     public function logout(){
         auth::logout();
-        return redirect('/posts');
+        return redirect('/');
     }
 }

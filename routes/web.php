@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,25 @@ use App\Post;
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return view('index');
+//     return view('post.posts');
+// });
+
+Route::get('posts/create','PostsController@create');
+Route::get('/','PostsController@index');
+
+Route::post('posts','PostsController@store');
+Route::get('posts/{id}', 'PostsController@show');
+Route::delete('posts/{id}', 'PostsController@destroy');
+Route::put('posts/{id}', 'PostsController@update');
+
+//Route::resource('/posts','PostsController');
+
+Route::middleware(['Auth::user()->is_admin'])->group(function() {
+    Route::get('posts/create','PostsController@create');
+    Route::get('posts/{id}/edit', 'PostsController@edit');
 });
-
-Route::resource('/posts','PostsController');
-
 // users add route
 Route::get('/users/create',[
     'uses'=>'UsersController@create',
@@ -58,12 +71,12 @@ Route::post('/comment/add',[
 //     'uses'=>'CommentsController@index',
 //     'as'=>'comment.show'
 // ]);
-Route::delete('offres/{id}',[
+Route::delete('posts/{id}',[
     'uses'=>'PostsController@destroy',
     'as'=>'posts.delete'
 ] );
 
-Route::post('offres/search',[
+Route::post('posts/search',[
     'uses'=>'PostsController@search',
     'as'=>'post.search'
 ] );
