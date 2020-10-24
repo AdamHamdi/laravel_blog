@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header bg-success" style="text-align: center"><h3>Ajouter un article</h3></div>
             <div class="card-body">
-                <form action="{{ url('posts') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                       <label for="title">Title *</label>

@@ -10,7 +10,7 @@
                 <a class="nav-link" href="{{ url('/') }}">Acceuil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Articles</a>
+                <a class="nav-link" href="{{ route('posts') }}">Articles</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,12 +24,13 @@
                     <a class="dropdown-item" href="{{ route('users.logout') }}">Deconnexion</a>
                     @else
                     <a class="dropdown-item" href="{{ route('user.add') }}">Inscription</a>
-                    <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a> @endauth
+                    <a class="dropdown-item" href="{{ route('users.login') }}">Connexion</a>
+                    @endauth
                 </div>
             </li>
             @auth
             {{--  seul l'admin peut ajouter un article  --}}
-               @if(Auth::user()->is_admin)
+               {{--  @if(Auth::user()->is_admin)  --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Gestion des article
@@ -39,7 +40,7 @@
 
                             </div>
                         </li>
-               @endif
+               {{--  @endif  --}}
             @endauth
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{{ route('post.search') }}" method="post">

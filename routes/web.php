@@ -20,19 +20,19 @@ use App\Post;
 // });
 
 Route::get('posts/create','PostsController@create');
-Route::get('/','PostsController@index');
+Route::get('/posts','PostsController@index')->name('posts');
 
-Route::post('posts','PostsController@store');
+Route::post('posts','PostsController@store')->name('post.store');
 Route::get('posts/{id}', 'PostsController@show');
 Route::delete('posts/{id}', 'PostsController@destroy');
 Route::put('posts/{id}', 'PostsController@update');
 
 //Route::resource('/posts','PostsController');
 
-Route::middleware(['Auth::user()->is_admin'])->group(function() {
-    Route::get('posts/create','PostsController@create');
-    Route::get('posts/{id}/edit', 'PostsController@edit');
-});
+// Route::middleware(['Auth::user()->is_admin'])->group(function() {
+    // Route::get('posts/create','PostsController@create');
+    // Route::get('posts/{id}/edit', 'PostsController@edit');
+// });
 // users add route
 Route::get('/users/create',[
     'uses'=>'UsersController@create',

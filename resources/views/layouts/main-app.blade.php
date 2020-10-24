@@ -1,4 +1,4 @@
-.
+
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +17,8 @@
 
 <body>
     @include('layouts.navigation')
-    <div class="container">
+
+    <div class="container mt-5">
         @if(Session::has('danger'))
         <div class="alert alert-danger">
             {{ Session::get('danger') }} @php Session::forget('danger'); @endphp
